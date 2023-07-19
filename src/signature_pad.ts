@@ -300,6 +300,10 @@ export default class SignaturePad {
                     VelocityX: isoPoint.vx,
                     VelocityY: isoPoint.vy
                 },
+				PenTipAcceleration: {
+					AccelerationX: isoPoint.ax,
+					AccelerationY: isoPoint.ay
+				},
                 DTChannel: isoPoint.dt,
                 FChannel: isoPoint.p
             };
