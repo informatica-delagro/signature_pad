@@ -275,17 +275,18 @@ export default class SignaturePad {
 				ay: 0,
                 p: Math.round(point.p * 65535)
             };
-			//calcular y normalizar datos de velocidad y aceleración
+			//calcular datos velocidad y aceleración
             isoPoint.vx = (isFirstPoint) ? 0 : Math.round((isoPoint.x - previousIsoPoint.x) / (isoPoint.dt / 1000));
+			isoPoint.vy = (isFirstPoint) ? 0 : Math.round((isoPoint.y - previousIsoPoint.y) / (isoPoint.dt / 1000));
+			isoPoint.ax = (isFirstPoint) ? 0 : Math.round((isoPoint.vx - previousIsoPoint.vx) / (isoPoint.dt / 1000));
+			isoPoint.ay = (isFirstPoint) ? 0 : Math.round((isoPoint.vy - previousIsoPoint.vy) / (isoPoint.dt / 1000));
+			//Normalizar datos de velocidad y aceleración en base a norma ISO/IEC 19794-7
 			isoPoint.vx = (isoPoint.vx < -32768) ? 0 : isoPoint.vx;
 			isoPoint.vx = ((isoPoint.vx > 32767 ) ? 32767 : isoPoint.vx) + 32768;
-            isoPoint.vy = (isFirstPoint) ? 0 : Math.round((isoPoint.y - previousIsoPoint.y) / (isoPoint.dt / 1000));
 			isoPoint.vy = (isoPoint.vy < -32768) ? 0 : isoPoint.vy;
 			isoPoint.vy = ((isoPoint.vy > 32767 ) ? 32767 : isoPoint.vy) + 32768;
-			isoPoint.ax = (isFirstPoint) ? 0 : Math.round((isoPoint.vx - previousIsoPoint.vx) / (isoPoint.dt / 1000));
 			isoPoint.ax = (isoPoint.ax < -32768) ? 0 : isoPoint.ax;
 			isoPoint.ax = ((isoPoint.ax > 32767 ) ? 32767 : isoPoint.ax) + 32768;
-			isoPoint.ay = (isFirstPoint) ? 0 : Math.round((isoPoint.vy - previousIsoPoint.vy) / (isoPoint.dt / 1000));
 			isoPoint.ay = (isoPoint.ay < -32768) ? 0 : isoPoint.ay;
 			isoPoint.ay = ((isoPoint.ay > 32767 ) ? 32767 : isoPoint.ay) + 32768;
 			
