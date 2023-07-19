@@ -282,13 +282,13 @@ export default class SignaturePad {
 			isoPoint.ay = (isFirstPoint) ? 0 : Math.round((isoPoint.vy - previousIsoPoint.vy) / (isoPoint.dt / 1000));
 			
 			// Normalizar datos de velocidad y aceleración en base a norma ISO/IEC 19794-7
-			let velX  = (isoPoint.vx < -32768) ? 0 : isoPoint.vx;
+			let velX  = (isoPoint.vx < -32768) ? -32768 : isoPoint.vx;
 			    velX = ((velX > 32767 ) ? 32767 : velX) + 32768;
-			let velY = (isoPoint.vy < -32768) ? 0 : isoPoint.vy;
+			let velY = (isoPoint.vy < -32768) ? -32768 : isoPoint.vy;
 			    velY = ((velY > 32767 ) ? 32767 : velY) + 32768;
-			let accX = (isoPoint.ax < -32768) ? 0 : isoPoint.ax;
+			let accX = (isoPoint.ax < -32768) ? -32768 : isoPoint.ax;
 			    accX = ((accX > 32767 ) ? 32767 : accX) + 32768;
-			let accY = (isoPoint.ay < -32768) ? 0 : isoPoint.ay;
+			let accY = (isoPoint.ay < -32768) ? -32768 : isoPoint.ay;
 			    accY = ((accY > 32767 ) ? 32767 : accY) + 32768;
 			
             const samplePoint = {
