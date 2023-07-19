@@ -280,15 +280,16 @@ export default class SignaturePad {
 			isoPoint.vy = (isFirstPoint) ? 0 : Math.round((isoPoint.y - previousIsoPoint.y) / (isoPoint.dt / 1000));
 			isoPoint.ax = (isFirstPoint) ? 0 : Math.round((isoPoint.vx - previousIsoPoint.vx) / (isoPoint.dt / 1000));
 			isoPoint.ay = (isFirstPoint) ? 0 : Math.round((isoPoint.vy - previousIsoPoint.vy) / (isoPoint.dt / 1000));
+			
 			// Normalizar datos de velocidad y aceleración en base a norma ISO/IEC 19794-7
-			isoPoint.vx = (isoPoint.vx < -32768) ? 0 : isoPoint.vx;
-			isoPoint.vx = ((isoPoint.vx > 32767 ) ? 32767 : isoPoint.vx) + 32768;
-			isoPoint.vy = (isoPoint.vy < -32768) ? 0 : isoPoint.vy;
-			isoPoint.vy = ((isoPoint.vy > 32767 ) ? 32767 : isoPoint.vy) + 32768;
-			isoPoint.ax = (isoPoint.ax < -32768) ? 0 : isoPoint.ax;
-			isoPoint.ax = ((isoPoint.ax > 32767 ) ? 32767 : isoPoint.ax) + 32768;
-			isoPoint.ay = (isoPoint.ay < -32768) ? 0 : isoPoint.ay;
-			isoPoint.ay = ((isoPoint.ay > 32767 ) ? 32767 : isoPoint.ay) + 32768;
+			let velX  = (isoPoint.vx < -32768) ? 0 : isoPoint.vx;
+			    velX = ((velX > 32767 ) ? 32767 : velX) + 32768;
+			let velY = (isoPoint.vy < -32768) ? 0 : isoPoint.vy;
+			    velY = ((velY > 32767 ) ? 32767 : velY) + 32768;
+			let accX = (isoPoint.ax < -32768) ? 0 : isoPoint.ax;
+			    accX = ((accX > 32767 ) ? 32767 : accX) + 32768;
+			let accY = (isoPoint.ay < -32768) ? 0 : isoPoint.ay;
+			    accY = ((accY > 32767 ) ? 32767 : accY) + 32768;
 			
             const samplePoint = {
                 PenTipCoord: {
@@ -297,12 +298,12 @@ export default class SignaturePad {
                     "cmn:Z": 0
                 },
                 PenTipVelocity: {
-                    VelocityX: isoPoint.vx,
-                    VelocityY: isoPoint.vy
+                    VelocityX: velX,
+                    VelocityY: velY
                 },
 				PenTipAcceleration: {
-					AccelerationX: isoPoint.ax,
-					AccelerationY: isoPoint.ay
+					AccelerationX: accX,
+					AccelerationY: accY
 				},
                 DTChannel: isoPoint.dt,
                 FChannel: isoPoint.p
