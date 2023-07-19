@@ -275,12 +275,12 @@ export default class SignaturePad {
 				ay: 0,
                 p: Math.round(point.p * 65535)
             };
-			//calcular datos velocidad y aceleración
+			// Calcular datos velocidad y aceleración
             isoPoint.vx = (isFirstPoint) ? 0 : Math.round((isoPoint.x - previousIsoPoint.x) / (isoPoint.dt / 1000));
 			isoPoint.vy = (isFirstPoint) ? 0 : Math.round((isoPoint.y - previousIsoPoint.y) / (isoPoint.dt / 1000));
 			isoPoint.ax = (isFirstPoint) ? 0 : Math.round((isoPoint.vx - previousIsoPoint.vx) / (isoPoint.dt / 1000));
 			isoPoint.ay = (isFirstPoint) ? 0 : Math.round((isoPoint.vy - previousIsoPoint.vy) / (isoPoint.dt / 1000));
-			//Normalizar datos de velocidad y aceleración en base a norma ISO/IEC 19794-7
+			// Normalizar datos de velocidad y aceleración en base a norma ISO/IEC 19794-7
 			isoPoint.vx = (isoPoint.vx < -32768) ? 0 : isoPoint.vx;
 			isoPoint.vx = ((isoPoint.vx > 32767 ) ? 32767 : isoPoint.vx) + 32768;
 			isoPoint.vy = (isoPoint.vy < -32768) ? 0 : isoPoint.vy;
