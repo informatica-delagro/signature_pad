@@ -12,10 +12,6 @@
 
   <link rel="stylesheet" href="css/signature-pad.css">
 
-  <!--[if IE]>
-    <link rel="stylesheet" type="text/css" href="css/ie9.css">
-  <![endif]-->
-
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-39365077-1']);
@@ -29,9 +25,9 @@
   </script>
 </head>
 <body onselectstart="return false">
-  <a id="github" style="position: absolute; top: 0; right: 0; border: 0" href="https://github.com/szimek/signature_pad">
-    <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
-  </a>
+  <span id="forkongithub">
+    <a href="https://github.com/szimek/signature_pad">Fork me on GitHub</a>
+  </span>
 
   <div id="signature-pad" class="signature-pad">
     <div class="signature-pad--body">
@@ -41,16 +37,19 @@
       <div class="description">Sign above</div>
 
       <div class="signature-pad--actions">
-        <div>
+        <div class="column">
           <button type="button" class="button clear" data-action="clear">Clear</button>
+          <button type="button" class="button" data-action="change-background-color">Change background color</button>
           <button type="button" class="button" data-action="change-color">Change color</button>
+          <button type="button" class="button" data-action="change-width">Change width</button>
           <button type="button" class="button" data-action="undo">Undo</button>
 
         </div>
-        <div>
+        <div class="column">
           <button type="button" class="button save" data-action="save-png">Save as PNG</button>
           <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
           <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+          <button type="button" class="button save" data-action="save-svg-with-background">Save as SVG with background</button>
         </div>
       </div>
     </div>
