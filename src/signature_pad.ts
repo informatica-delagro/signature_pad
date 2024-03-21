@@ -326,7 +326,7 @@ export default class SignaturePad extends SignatureEventTarget {
                 vy: 0,
 				        ax: 0,
 				        ay: 0,
-                p: Math.round(point.pressure * 65535)
+                pressure: Math.round(point.pressure * 65535)
             };
 			      // Calcular datos velocidad y aceleración
             isoPoint.vx = (isFirstPoint) ? 0 : Math.round((isoPoint.x - previousIsoPoint.x) / (isoPoint.dt / 1000));
@@ -359,7 +359,7 @@ export default class SignaturePad extends SignatureEventTarget {
 					          AccelerationY: accY
 				        },
                 DTChannel: isoPoint.dt,
-                FChannel: isoPoint.p
+                FChannel: isoPoint.pressure
             };
             isoData.SignatureSignTimeSeries.RepresentationList.Representation.SamplePointList.SamplePoint.push(samplePoint);
             previousPoint = point;
