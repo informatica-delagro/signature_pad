@@ -271,8 +271,8 @@ export default class SignaturePad {
                 dt: (isFirstPoint) ? 0 : point.time - previousPoint.time,
                 vx: 0,
                 vy: 0,
-				ax: 0,
-				ay: 0,
+				        ax: 0,
+				        ay: 0,
                 p: Math.round(point.p * 65535)
             };
 			// Calcular datos velocidad y aceleración
