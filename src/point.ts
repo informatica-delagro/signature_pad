@@ -2,16 +2,23 @@
 export interface BasicPoint {
   x: number;
   y: number;
-  p: number;
+  pressure: number;
   time: number;
 }
 
 export class Point implements BasicPoint {
-  public p: number;
+  public x: number;
+  public y: number;
+  public pressure: number;
   public time: number;
-  
-  constructor(public x: number, public y: number, p?: number, time?: number) {
-    this.p = p || 0;
+
+  constructor(x: number, y: number, pressure?: number, time?: number) {
+    if (isNaN(x) || isNaN(y)) {
+      throw new Error(`Point is invalid: (${x}, ${y})`);
+    }
+    this.x = +x;
+    this.y = +y;
+    this.pressure = pressure || 0;
     this.time = time || Date.now();
   }
 
@@ -22,7 +29,12 @@ export class Point implements BasicPoint {
   }
 
   public equals(other: BasicPoint): boolean {
-    return this.x === other.x && this.y === other.y && this.time === other.time;
+    return (
+      this.x === other.x &&
+      this.y === other.y &&
+      this.pressure === other.pressure &&
+      this.time === other.time
+    );
   }
 
   public velocityFrom(start: BasicPoint): number {
